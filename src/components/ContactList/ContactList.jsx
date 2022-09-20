@@ -5,8 +5,6 @@ import { fetchContacts } from "redux/Contacts/contacts-operations";
 
 import { ContactItem } from "components/ContactItem/ContactItem";
 
-import { ContactListStyled } from "./ContactList.styled";
-
 
 
 export const ContactList = () => {
@@ -27,10 +25,10 @@ export const ContactList = () => {
   const filterResults = getFilterResults();
 
   return (
-    <ContactListStyled>
+    <ul>
       {filterResults.map(contact => (
         <ContactItem key={contact.id} contact={contact} />
       ))}
-    </ContactListStyled>
+    </ul>
   );
 }

@@ -1,8 +1,8 @@
 import { nanoid } from "nanoid";
 import { useSelector, useDispatch } from "react-redux";
-import { filterContacts } from "redux/Filter/filter-slice"; 
+import { filterContacts } from "redux/Filter/filter-slice";
 
-import { FilterContainer, FilterLabel, FilterInput } from "./Filter.styled";
+import css from "./Filter.module.css"
 
 
 
@@ -19,9 +19,9 @@ export const Filter = () => {
   }
 
   return (
-    <FilterContainer>
-      <FilterLabel htmlFor={filterInputID}>Find contact by name:</FilterLabel>
-      <FilterInput
+    <div className={css.filterContainer}>
+      <label className={css.label} htmlFor={filterInputID}>Find contact by name:</label>
+      <input
         id={filterInputID}
         type="text"
         name="name"
@@ -31,6 +31,6 @@ export const Filter = () => {
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
       />
-    </FilterContainer>
+    </div>
   );
 }

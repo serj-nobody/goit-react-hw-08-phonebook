@@ -1,0 +1,17 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.contactWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 15px;
+}
+
+.name {
+  font-weight: 700;
+  margin-right: 15px;
+}

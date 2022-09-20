@@ -1,0 +1,17 @@
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  height: 100vh;
+  width: 100%;
+  padding: 15px;
+  padding-top: 30px;
+}
+
+.pageTitle {
+  margin-bottom: 30px;
+}
+
+.secodaryTitle {
+  margin: 30px 0;
+}

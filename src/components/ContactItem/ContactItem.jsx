@@ -1,8 +1,9 @@
 import { useDispatch } from "react-redux";
 import { removeContact } from "redux/Contacts/contacts-operations";
 
+import css from "./ContactItem.module.css"
+
 import PropTypes from 'prop-types';
-import { ContactElement, ContactWrapper, ContactName, ContactNumber, Button } from "./ContactItem.styled";
 
 
 
@@ -14,13 +15,13 @@ export const ContactItem = ({contact}) => {
   };
 
   return (
-    <ContactElement>
-      <ContactWrapper>
-        <ContactName>{contact.name}:</ContactName>
-        <ContactNumber>{contact.number}</ContactNumber>
-      </ContactWrapper>
-      <Button type="button" onClick={() => onRemoveContact(contact.id)}>Delete</Button>
-    </ContactElement>
+    <li className={css.item}>
+      <div className={css.contactWrapper}>
+        <span className={css.name}>{contact.name}</span>
+        <span>{contact.number}</span>
+      </div>
+      <button type="button" onClick={() => onRemoveContact(contact.id)}>Delete</button>
+    </li>
   );
 }
 

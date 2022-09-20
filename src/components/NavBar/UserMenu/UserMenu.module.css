@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+  transition: color;
+  transition-duration: 250ms;
+}
+
+.link:hover {
+  color: #ecb365;
+}

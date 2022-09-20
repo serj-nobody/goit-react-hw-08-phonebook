@@ -1,18 +1,20 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
 import { useDispatch } from "react-redux";
-import { addContact } from "redux/Contacts/contacts-operations";
+import { signupUser } from "redux/Auth/auth-operations";
 
-import css from "./ContactForm.module.css"
+import css from "./AuthForm.module.css"
 
 
 
-export function ContactForm() {
+export const AuthForm = () => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const nameInputID = nanoid();
-  const numberInputID = nanoid();
+  const emailInputID = nanoid();
+  const passwordInputID = nanoid();
 
   const dispatch = useDispatch();
 
@@ -23,8 +25,11 @@ export function ContactForm() {
       case 'name':
         setName(value);
         break;
-      case 'number':
-        setNumber(value);
+      case 'email':
+        setEmail(value);
+        break;
+      case 'password':
+        setPassword(value);
         break;
       default:
         return;
@@ -33,19 +38,20 @@ export function ContactForm() {
 
   const reset = () => {
     setName('');
-    setNumber('');
+    setEmail('');
+    setPassword('');
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
 
-    const contact = {
-      id: nanoid(),
+    const user = {
       name: name,
-      number: number,
+      email: email,
+      password: password,
     };
 
-    dispatch(addContact(contact));
+    dispatch(signupUser(user));
     reset();
   };
 
@@ -65,20 +71,30 @@ export function ContactForm() {
         />
       </div>
       <div className={css.inputGroup}>
-        <label className={css.label} htmlFor={numberInputID}>Number:</label>
+        <label className={css.label} htmlFor={emailInputID}>Email:</label>
         <input
-          id={numberInputID}
-          type="tel"
-          name="number"
-          value={number}
+          id={emailInputID}
+          type="email"
+          name="email"
+          value={email}
           onChange={onInputChange}
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
       </div>
-      
-      <button type="submit">Add contact</button>
+      <div className={css.inputGroup}>
+        <label className={css.label} htmlFor={passwordInputID}>Password:</label>
+        <input
+          id={passwordInputID}
+          type="password"
+          name="password"
+          value={password}
+          onChange={onInputChange}
+          required
+        />
+      </div>
+      <div className={css.inputGroup}>
+        <button type="submit">Register</button>
+      </div>
     </form>
   );
 }
