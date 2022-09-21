@@ -25,7 +25,7 @@ export const ContactList = () => {
   const filterResults = getFilterResults();
 
   return (
-    <ul>
+    <ul style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
       {filterResults.map(contact => (
         <ContactItem key={contact.id} contact={contact} />
       ))}

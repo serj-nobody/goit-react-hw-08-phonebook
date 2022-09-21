@@ -5,6 +5,7 @@ import useAuth from "shared/hooks/useAuth";
 
 import { LoginForm } from "components/LoginForm/LoginForm";
 
+import { Typography } from "@mui/material";
 import css from "./LoginPage.module.css"
 
 const LoginPage = () => {
@@ -17,7 +18,7 @@ const LoginPage = () => {
 
   return (
     <div className={css.pageWrapper}>
-      <h3 className={css.pageTitle}>Login Page</h3>
+      <Typography variant="h5" sx={{marginBottom: '25px'}}>Login</Typography>
       <LoginForm />
       {status && alert(`Invalid email or password! Please Try Again.`)}
     </div>

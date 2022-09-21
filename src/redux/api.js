@@ -4,6 +4,8 @@ const instance = axios.create({
   baseURL: 'https://connections-api.herokuapp.com/',
 });
 
+// AUTHORIZATION API:
+
 const setToken = (token) => {
   if (token) {
     return instance.defaults.headers.common.authorization = `Bearer ${token}`;
@@ -28,6 +30,19 @@ export const logout = async () => {
   setToken();
   return data;
 };
+
+export const getCurrent = async (token) => {
+  try {
+    setToken(token);
+    const data = await instance.get('/users/current');
+    return data;  
+  } catch (error) {
+    setToken();
+    throw error;
+  }
+};
+
+// CONTACT BOOK API:
 
 export const getContacts = async () => {
   const { data } = await instance.get('/contacts');

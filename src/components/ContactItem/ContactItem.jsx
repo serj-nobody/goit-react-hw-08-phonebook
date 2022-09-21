@@ -1,7 +1,9 @@
 import { useDispatch } from "react-redux";
 import { removeContact } from "redux/Contacts/contacts-operations";
 
-import css from "./ContactItem.module.css"
+import { styled, Paper, ListItem, ListItemText, IconButton } from "@mui/material";
+import { Delete } from "@mui/icons-material";
+// import css from "./ContactItem.module.css"
 
 import PropTypes from 'prop-types';
 
@@ -15,13 +17,22 @@ export const ContactItem = ({contact}) => {
   };
 
   return (
-    <li className={css.item}>
-      <div className={css.contactWrapper}>
-        <span className={css.name}>{contact.name}</span>
-        <span>{contact.number}</span>
-      </div>
-      <button type="button" onClick={() => onRemoveContact(contact.id)}>Delete</button>
-    </li>
+    <StyledListItem>
+      <StyledCard elevation={3}>
+        <ListItemText primary={contact.name} secondary={contact.number} />
+        <IconButton edge="end" aria-label="delete" onClick={() => onRemoveContact(contact.id)}>
+          <Delete />
+        </IconButton>
+      </StyledCard>
+    </StyledListItem>
+
+    // <li className={css.item}>
+    //   <div className={css.contactWrapper}>
+    //     <span className={css.name}>{contact.name}</span>
+    //     <span>{contact.number}</span>
+    //   </div>
+    //   <button type="button" onClick={() => onRemoveContact(contact.id)}>Delete</button>
+    // </li>
   );
 }
 
@@ -32,3 +43,17 @@ ContactItem.propTypes = {
     number: PropTypes.string.isRequired,
   }).isRequired,
 }
+
+
+
+const StyledListItem = styled(ListItem)({
+  width: '100%',
+  maxWidth: '380px',
+});
+
+const StyledCard = styled(Paper)({
+  display: 'flex',
+  padding: '10px 25px',
+  width: '100%',
+  backgroundColor: '#f5f5f5',
+});

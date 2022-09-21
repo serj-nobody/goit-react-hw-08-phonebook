@@ -5,6 +5,7 @@ import useAuth from "shared/hooks/useAuth";
 
 import { AuthForm } from "components/AuthForm/AuthForm";
 
+import { Typography } from "@mui/material";
 import css from "./AuthPage.module.css"
 
 const AuthPage = () => {
@@ -17,7 +18,7 @@ const AuthPage = () => {
 
   return (
     <div className={css.pageWrapper}>
-      <h3 className={css.pageTitle}>Registration Form</h3>
+      <Typography variant="h5" sx={{marginBottom: '25px'}}>Sign Up Form</Typography>
       <AuthForm />
       {status && alert(`User ${message} is already in use!`)}
     </div>
