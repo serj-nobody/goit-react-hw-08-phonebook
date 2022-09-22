@@ -21,7 +21,7 @@ export const ContactItem = ({contact}) => {
       <StyledCard elevation={3}>
         <ListItemText primary={contact.name} secondary={contact.number} />
         <IconButton edge="end" aria-label="delete" onClick={() => onRemoveContact(contact.id)}>
-          <Delete sx={{ color: '#ef5350' }} />
+          <Delete sx={{ color: '#ff7e67' }} />
         </IconButton>
       </StyledCard>
     </StyledListItem>

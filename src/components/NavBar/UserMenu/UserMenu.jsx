@@ -15,7 +15,7 @@ export const UserMenu = () => {
   return (
     <div className={css.wrapper}>
       <Typography sx={{fontSize: {xs: '14px', md: '16px'}, display: {xs: 'none', sm: 'block'}}}>Hello, {name}</Typography>
-      <Button onClick={onLogout} type="button" variant="contained" color='warning' size='small'>Log out</Button>
+      <Button onClick={onLogout} type="button" variant="contained" color='warning' size='small' sx={{color: '#fff'}}>Log out</Button>
     </div>
   );
 };

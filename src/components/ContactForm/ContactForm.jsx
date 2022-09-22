@@ -92,7 +92,7 @@ export function ContactForm() {
           required
         />
       </InputWrapper>
-      <Button type="submit" variant="contained" color='warning'>Add Contact</Button>
+      <Button type="submit" variant="contained" color='warning' sx={{ color: '#fff'}}>Add Contact</Button>
       <Snackbar className={css.snackbar} open={openWarning} autoHideDuration={3000} onClose={() => setOpenWarning(false)} anchorOrigin={{vertical: 'top', horizontal: 'center'}}>
         <Alert severity="error">{currentName} is already in your phonebook.</Alert>
       </Snackbar>

@@ -19,7 +19,7 @@ const HomePage = () => {
         : 
         <div>
           <Typography variant="h5" sx={{marginBottom: '16px'}}>Welcome to the PhoneBook App!</Typography>
-          <Typography variant="p">Please proceed to <Link component={NavLink} to="/register">Sign Up</Link> form or <Link component={NavLink} to="/login">Login</Link> to your account to browse your contact list.</Typography>
+          <Typography variant="p">Please proceed to <Link component={NavLink} to="/register" sx={{ color: '#38a3a5'}}>Sign Up</Link> form or <Link component={NavLink} to="/login" sx={{ color: '#38a3a5'}}>Login</Link> to your account to browse your contact list.</Typography>
         </div>
       }
     </Container>

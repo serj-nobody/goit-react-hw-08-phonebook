@@ -71,7 +71,7 @@ export const LoginForm = () => {
             required
           />
         </InputWrapper>
-        <Button type="submit" variant="contained" color='warning' sx={{ marginBottom: '25px' }}>Login</Button>
+        <Button type="submit" variant="contained" color='warning' sx={{ color: '#fff', marginBottom: '25px' }}>Login</Button>
       </StyledForm>
     </div>
   );

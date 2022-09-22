@@ -16,6 +16,6 @@ export const AuthMenu = () => {
 
 const NavButton = styled(Button)({
   '&.active': {
-    color: '#ff9800',
+    color: '#95d1cc',
   }
 });

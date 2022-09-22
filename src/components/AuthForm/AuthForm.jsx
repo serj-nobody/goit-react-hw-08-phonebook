@@ -88,7 +88,7 @@ export const AuthForm = () => {
             required
           />
         </InputWrapper>
-        <Button type="submit" variant="contained" color='warning' sx={{ marginBottom: '25px' }}>Register</Button>
+        <Button type="submit" variant="contained" color='warning' sx={{ color: '#fff', marginBottom: '25px' }}>Register</Button>
       </StyledForm>
     </div>
   );

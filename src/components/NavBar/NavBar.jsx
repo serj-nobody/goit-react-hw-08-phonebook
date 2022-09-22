@@ -17,7 +17,7 @@ export const NavBar = () => {
     <AppBar position='fixed' sx={{left: '50%', transform: 'translateX(-50%)', maxWidth: '1280px'}}>
       <StyledToolbar>
         <div className={css.wrapper}>
-          <StyledLogo variant='h6' sx={{ display: { xs: 'none', sm: 'block' }, marginRight: '16px' }}>Phone<Typography variant='h6' component="span">Book</Typography></StyledLogo>
+          <StyledLogo variant='h6' sx={{ display: { xs: 'none', sm: 'block' }, marginRight: '16px' }}>PhoneBook</StyledLogo>
           <PhoneIphone sx={{ display: { xs: 'block', sm: 'none' } }} fontSize='large' />
           {isLogin ?
             <div>
@@ -47,6 +47,6 @@ const StyledLogo = styled(Typography)({
 
 const NavButton = styled(Button)({
   '&.active': {
-    color: '#ff9800',
+    color: '#95d1cc',
   }
 });
