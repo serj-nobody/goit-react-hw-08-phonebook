@@ -21,18 +21,10 @@ export const ContactItem = ({contact}) => {
       <StyledCard elevation={3}>
         <ListItemText primary={contact.name} secondary={contact.number} />
         <IconButton edge="end" aria-label="delete" onClick={() => onRemoveContact(contact.id)}>
-          <Delete />
+          <Delete sx={{ color: '#ef5350' }} />
         </IconButton>
       </StyledCard>
     </StyledListItem>
-
-    // <li className={css.item}>
-    //   <div className={css.contactWrapper}>
-    //     <span className={css.name}>{contact.name}</span>
-    //     <span>{contact.number}</span>
-    //   </div>
-    //   <button type="button" onClick={() => onRemoveContact(contact.id)}>Delete</button>
-    // </li>
   );
 }
 
@@ -45,6 +37,7 @@ ContactItem.propTypes = {
 }
 
 
+// MUI Styles:
 
 const StyledListItem = styled(ListItem)({
   width: '100%',

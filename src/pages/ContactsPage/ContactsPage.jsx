@@ -2,18 +2,17 @@ import { ContactForm } from "components/ContactForm/ContactForm";
 import { Filter } from "components/Filter/Filter";
 import { ContactList } from "components/ContactList/ContactList";
 
-import { Typography } from "@mui/material";
-import css from "./ContactsPage.module.css"
+import { Box, Typography } from "@mui/material";
+// import css from "./ContactsPage.module.css"
 
 const ContactsPage = () => {
   return (
-    <div className={css.pageWrapper}>
+    <Box sx={{ paddingTop: { xs: '88px', sm: '96px'}, width: '100%', textAlign: 'center'}}>
       <Typography variant="h5">My PhoneBook</Typography>
       <ContactForm />
-      {/* <h4 className={css.secodaryTitle}>Contacts</h4> */}
       <Filter />
       <ContactList />
-    </div>
+    </Box>
   );
 };
 

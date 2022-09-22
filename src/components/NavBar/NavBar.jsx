@@ -1,34 +1,40 @@
-// import { Aod, PhoneIphone } from "@mui/icons-material";
-import { styled, AppBar, Toolbar, Typography } from "@mui/material";
-// import { Link } from "react-router-dom";
+import { PhoneIphone } from "@mui/icons-material";
+import { styled, AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 import useAuth from "shared/hooks/useAuth";
 
 import { AuthMenu } from "./AuthMenu/AuthMenu";
 import { UserMenu } from "./UserMenu/UserMenu";
 
-// import css from "./NavBar.module.css";
+import css from "./NavBar.module.css";
 
 
 export const NavBar = () => {
   const isLogin = useAuth();
 
   return (
-    <AppBar position='static'>
+    <AppBar position='fixed' sx={{left: '50%', transform: 'translateX(-50%)', maxWidth: '1280px'}}>
       <StyledToolbar>
-        <StyledLogo variant='h6'>Phone<Typography variant='h6' component="span">Book</Typography></StyledLogo>
-        { isLogin ? <UserMenu /> : <AuthMenu /> }
+        <div className={css.wrapper}>
+          <StyledLogo variant='h6' sx={{ display: { xs: 'none', sm: 'block' }, marginRight: '16px' }}>Phone<Typography variant='h6' component="span">Book</Typography></StyledLogo>
+          <PhoneIphone sx={{ display: { xs: 'block', sm: 'none' } }} fontSize='large' />
+          {isLogin ?
+            <div>
+              <NavButton component={NavLink} to="/" end color="inherit">Home</NavButton>
+              <NavButton component={NavLink} to="/contacts" color="inherit">Contacts</NavButton>
+            </div> : 
+            <NavButton component={NavLink} to="/" end color="inherit">Home</NavButton>
+          }
+        </div>
+        {isLogin ? <UserMenu /> : <AuthMenu />}
       </StyledToolbar>
     </AppBar>
-      
-    // <div className={css.wrapper}>
-    //   <Link className={css.link} to="/">Phonebook</Link>
-    // {isLogin ? <UserMenu /> : <AuthMenu />}
-    // </div>
   );
 };
 
 
+// MUI Styles:
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -37,4 +43,10 @@ const StyledToolbar = styled(Toolbar)({
 
 const StyledLogo = styled(Typography)({
   fontWeight: '700',
+});
+
+const NavButton = styled(Button)({
+  '&.active': {
+    color: '#ff9800',
+  }
 });

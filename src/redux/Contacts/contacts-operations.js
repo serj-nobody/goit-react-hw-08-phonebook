@@ -16,16 +16,6 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
-const duplicateName = ({ name }, contacts) => {
-  const normalizedName = name.toLowerCase();
-
-  const result = contacts.find(item => {
-    return normalizedName === item.name.toLowerCase();
-  });
-
-  return Boolean(result);
-};
-
 export const addContact = createAsyncThunk(
   'contact/add',
   async (data, thunkAPI) => {
@@ -35,16 +25,7 @@ export const addContact = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
-  },
-  {
-    condition: (data, { getState }) => {
-      const { contacts } = getState();
-      if (duplicateName(data, contacts.items)) {
-        alert(`${data.name} is already in your contacts`);
-        return false;
-      }
-    } 
-  } 
+  }
 );
 
 export const removeContact = createAsyncThunk(

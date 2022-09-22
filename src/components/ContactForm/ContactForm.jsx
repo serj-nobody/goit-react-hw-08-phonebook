@@ -1,19 +1,23 @@
 import { useState } from "react";
 import { nanoid } from "nanoid";
-import { useDispatch } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
+import { getContacts } from "redux/Contacts/contacts-selectors";
 import { addContact } from "redux/Contacts/contacts-operations";
 
-import { styled, Box, TextField, Button } from "@mui/material";
-// import css from "./ContactForm.module.css"
+import { styled, Box, TextField, Button, Snackbar, Alert } from "@mui/material";
+import css from "./ContactForm.module.css"
 
 
 
 export function ContactForm() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const [currentName, setCurrentName] = useState('');
+  const [openWarning, setOpenWarning] = useState(false);
+  const [openSuccess, setOpenSuccess] = useState(false);
 
-  // const nameInputID = nanoid();
-  // const numberInputID = nanoid();
+  const contacts = useSelector(getContacts);
 
   const dispatch = useDispatch();
 
@@ -23,6 +27,7 @@ export function ContactForm() {
     switch (name) {
       case 'name':
         setName(value);
+        setCurrentName(value);
         break;
       case 'number':
         setNumber(value);
@@ -37,21 +42,34 @@ export function ContactForm() {
     setNumber('');
   };
 
+  const duplicateName = (name) => {
+    const normalizedName = name.toLowerCase();
+    const result = contacts.find(contact => normalizedName === contact.name.toLowerCase());
+
+    return result;
+  };
+
   const onSubmit = (event) => {
     event.preventDefault();
-
     const contact = {
       id: nanoid(),
       name: name,
       number: number,
     };
 
-    dispatch(addContact(contact));
-    reset();
+    if (duplicateName(name)) {
+      setOpenWarning(true);
+      reset();
+      return;
+    } else {
+      dispatch(addContact(contact));
+      setOpenSuccess(true);
+      reset();
+    }
   };
 
   return (
-    <StyledForm component='form' onSubmit={onSubmit} autoComplete='off'>
+    <StyledForm component='form' onSubmit={onSubmit} autoComplete='on'>
       <InputWrapper>
         <StyledInput
           id="outlined-required"
@@ -75,42 +93,19 @@ export function ContactForm() {
         />
       </InputWrapper>
       <Button type="submit" variant="contained" color='warning'>Add Contact</Button>
+      <Snackbar className={css.snackbar} open={openWarning} autoHideDuration={3000} onClose={() => setOpenWarning(false)} anchorOrigin={{vertical: 'top', horizontal: 'center'}}>
+        <Alert severity="error">{currentName} is already in your phonebook.</Alert>
+      </Snackbar>
+      <Snackbar className={css.snackbar} open={openSuccess} autoHideDuration={3000} onClose={() => setOpenSuccess(false)} anchorOrigin={{vertical: 'top', horizontal: 'center'}}>
+        <Alert severity="success">{currentName} successfuly added to your phonebook!.</Alert>
+      </Snackbar>
     </StyledForm>
-
-    // <form className={css.form} onSubmit={onSubmit}>
-    //   <div className={css.inputGroup}>
-    //     <label className={css.label} htmlFor={nameInputID}>Name:</label>
-    //     <input
-    //       id={nameInputID}
-    //       type="text"
-    //       name="name"
-    //       value={name}
-    //       onChange={onInputChange}
-    //       pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-    //       title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-    //       required
-    //     />
-    //   </div>
-    //   <div className={css.inputGroup}>
-    //     <label className={css.label} htmlFor={numberInputID}>Number:</label>
-    //     <input
-    //       id={numberInputID}
-    //       type="tel"
-    //       name="number"
-    //       value={number}
-    //       onChange={onInputChange}
-    //       pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-    //       title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-    //       required
-    //     />
-    //   </div>
-      
-    //   <button type="submit">Add contact</button>
-    // </form>
   );
 }
 
 
+
+// MUI Styles:
 
 const StyledForm = styled(Box)({
   display: "flex",
