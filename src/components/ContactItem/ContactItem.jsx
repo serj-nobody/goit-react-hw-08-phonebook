@@ -17,7 +17,7 @@ export const ContactItem = ({contact}) => {
   };
 
   return (
-    <StyledListItem>
+    <StyledListItem component='div'>
       <StyledCard elevation={3}>
         <ListItemText primary={contact.name} secondary={contact.number} />
         <IconButton edge="end" aria-label="delete" onClick={() => onRemoveContact(contact.id)}>

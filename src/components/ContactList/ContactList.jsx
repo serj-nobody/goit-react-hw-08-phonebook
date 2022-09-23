@@ -5,6 +5,8 @@ import { fetchContacts } from "redux/Contacts/contacts-operations";
 
 import { ContactItem } from "components/ContactItem/ContactItem";
 
+import { motion, AnimatePresence } from "framer-motion"
+
 
 
 export const ContactList = () => {
@@ -26,9 +28,21 @@ export const ContactList = () => {
 
   return (
     <ul style={{display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%'}}>
-      {filterResults.map(contact => (
-        <ContactItem key={contact.id} contact={contact} />
-      ))}
+      <AnimatePresence>
+        {filterResults.map(contact => (
+          <motion.li
+            key={contact.id}
+            layout
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.8, opacity: 0 }}
+            transition={{ type: "spring", bounce: 0.5 }}
+            style={{display: 'flex', justifyContent: 'center', width: '100%', margin: '0 auto'}}
+          >
+            <ContactItem contact={contact} />
+          </motion.li>
+        ))};
+      </AnimatePresence>
     </ul>
   );
 }
